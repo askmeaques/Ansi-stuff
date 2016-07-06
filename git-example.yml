@@ -1,0 +1,9 @@
+--- # Simple Git Example
+- hosts: apache-client
+  user: test
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Checking out a git repo
+      #git: repo=ssh://test@ansi3/home/test  dest=home/test/getrepo
+      git: repo=ssh://email/dir-to-repo  dest=home/test/getrepo

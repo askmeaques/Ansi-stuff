@@ -1,0 +1,21 @@
+--- #Example of using notify in a handler- if notify doesnt take place handler will not run
+- hosts: apache-client
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  vars:
+    playbook_ver: 0.1b
+  vars_files:
+    - conf/copyright.yml
+    - conf/webdefaults.yml
+  vars_prompt:
+    - name: web_domain
+      prompt: web_domain    ##prompts for domain name
+  tasks:
+    - name: Install Apache Web Server
+      action: yum name=httpd state=installed
+      notify: Restart HTTPD
+  handlers:
+    - name: Restart HTTPD
+      action: service name=httpd state=restarted

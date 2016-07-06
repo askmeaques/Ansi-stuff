@@ -1,0 +1,16 @@
+--- #Until example  run playbook after task completes quickly do a systemctl start http on apache-client and you should get json output for until string
+- hosts: apache-client
+  sudo: yes
+  connection: ssh
+  user: test
+  gather_facts: no
+  tasks:
+    - name: Install Apache
+      yum: pkg=httpd state=latest
+    - name: Verify service status
+      shell: systemctl status httpd
+      register: result
+      until: result.stdout.find("active (running)") != -1
+      retries: 5
+      delay: 5
+    - debug: var=result  

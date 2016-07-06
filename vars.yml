@@ -1,0 +1,2 @@
+control_server: ansi1.localdomain
+web_root: /var/www/html

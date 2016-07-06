@@ -1,0 +1,6 @@
+--- #Local action playbook it needs sudoers access and we did not set that so run with -s
+- hosts: 127.0.0.1
+  connection: local
+  tasks:
+    - name: Install telnet
+      yum: pkg=telnet state=removed
