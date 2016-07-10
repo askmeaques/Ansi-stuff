@@ -1,0 +1,14 @@
+#### ansible-playbook fromcmdline.yml --extra-vars "hosts=apache-client user=test  pkg=telnet"   
+#command above installs telnet  look at how "yum" is being described
+#how to pass args at command line
+#
+--- # variables at command line- how to pass vars at command line look at {{ vars }} below
+- hosts: "{{ hosts }}"
+  user: "{{ user }}"
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks: 
+    - name: Install some software
+      yum: pkg={{ pkg }} state=latest
+

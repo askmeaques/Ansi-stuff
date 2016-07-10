@@ -1,0 +1,11 @@
+---  #Delagate task (example upgrading env config from a master machine or patching a cluster is another example)
+- hosts: local
+  sudo: yes
+  user: test
+  connection: ssh
+  tasks:
+  - name: Run a remote ping on ansi3
+    command: ping -c 4 ansi3 > /home/test/playbooks/logs/ping.log
+    delegate_to: local
+  - name: Install a package
+    yum: pkg=lynx state=lynx 

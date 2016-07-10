@@ -1,0 +1,12 @@
+--- # How to ignore errors and move on
+- hosts: apache-client
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Execute a command that will fail
+      command: /bin/false
+      ignore_errors: yes
+    - name: Intall telnet
+      yum: pkg=telnet state=latest
